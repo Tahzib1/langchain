@@ -1,19 +1,37 @@
+"use client"
+
+import { useEffect, useState } from "react";
 import ChatForm from "./ChatForm";
+import ChatBubble from "./ChatBubble";
 
 type Props = {
-  children?: React.ReactNode | Array<React.ReactNode>
+
 }
 
-const ChatWindow = ({children}: Props) => {
-  return (
-    <div className="h-3/4">
-    <div className="bg-black h-full p-4 overflow-y-auto">
-          {children}
-    </div>
+const ChatWindow = ({}: Props) => {
 
-    <div className="w-5/6 mx-auto mt-4 ">
-      <ChatForm />
-    </div>
+  const [messages, setMessages] = useState<Array<string>>([]);
+
+  const handleUpdateMessages = (newMessage: string) => {
+    setMessages([...messages, newMessage])
+  } 
+
+  useEffect(() => {
+    console.log(messages);
+  }, [messages])
+
+
+  return (
+    <div className="h-screen">
+      <div className="bg-black h-3/4 p-4 overflow-y-auto">
+          {messages.map((message, index) => {
+            return <ChatBubble key={index} content={message} isStart/>
+          })}
+      </div>
+
+      <div className="md:w-5/6 h-1/4 mx-auto mt-4 ">
+        <ChatForm handleUpdateMessages={handleUpdateMessages} />
+      </div>
     </div>
   )
 }
