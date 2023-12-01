@@ -13,19 +13,19 @@ const ChatForm = ({handleUpdateMessages}: Props) => {
     handleUpdateMessages(message);
     setMessage('');
   }
-  
+
   return (
-    <form onSubmit={handleSubmit} className="md:flex items-center m-auto mx-4">
-      <textarea 
-      className="textarea textarea-sm bg-base-300 w-full md:w-11/12" 
+    <form onSubmit={handleSubmit} className="flex justify-between m-auto">
+      <input 
+      className="input input-bordered bg-base-200 w-full" 
       name="messageTextArea"
       placeholder="Send a Message.."
       value={message}
       onChange={e=> setMessage(e.currentTarget.value)}
       >
 
-      </textarea>
-      <button type="submit" className="btn h-full btn-success md:w-1/12 md:ml-4 float-right">Send</button>
+      </input>
+      <button type="submit" className="btn btn-success ml-4 md:px-12">Send</button>
 
 
     </form>

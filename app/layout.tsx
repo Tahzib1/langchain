@@ -24,11 +24,12 @@ export default function RootLayout({
           property="og:description"
           content="Chat app using our own data!"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0" />
       </head>
       <body className={publicSans.className}>
-        <div className="flex flex-col">
+        <div>
           <Navbar />
-          <main className="h-screen">
+          <main className="h-[calc(100vh-64px)]">
             {children}
           </main>
         </div>

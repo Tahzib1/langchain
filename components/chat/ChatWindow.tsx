@@ -22,14 +22,14 @@ const ChatWindow = ({}: Props) => {
 
 
   return (
-    <div className="h-screen">
-      <div className="bg-black h-3/4 p-4 overflow-y-auto">
+    <div className="h-full flex flex-col">
+      <div className="bg-black h-[90%] p-4 overflow-y-auto">
           {messages.map((message, index) => {
             return <ChatBubble key={index} content={message} isStart/>
           })}
       </div>
 
-      <div className="md:w-5/6 h-1/4 mx-auto mt-4 ">
+      <div className="w-11/12 h-[10%] mx-auto mt-4">
         <ChatForm handleUpdateMessages={handleUpdateMessages} />
       </div>
     </div>
