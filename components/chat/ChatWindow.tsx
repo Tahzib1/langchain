@@ -10,7 +10,7 @@ type Props = {
 
 const ChatWindow = ({}: Props) => {
 
-  const [messages, setMessages] = useState<Array<string>>([]);
+  const [messages, setMessages] = useState<Array<string>>(['Hello, how can I assist you?']);
 
   const handleUpdateMessages = (newMessage: string) => {
     setMessages([...messages, newMessage])

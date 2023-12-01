@@ -26,9 +26,11 @@ export default function RootLayout({
         />
       </head>
       <body className={publicSans.className}>
-        <div className="flex flex-col  h-[100vh]">
+        <div className="flex flex-col">
           <Navbar />
-          {children}
+          <main className="h-screen">
+            {children}
+          </main>
         </div>
       </body>
     </html>
