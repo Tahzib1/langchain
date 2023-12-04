@@ -11,7 +11,7 @@ type Props = {
 }
 
 const ChatWindow = ({}: Props) => {
-  const endpoint = "api/chat"
+  // const endpoint = "api/chat"
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     // api: endpoint,
     onResponse(response) {
