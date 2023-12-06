@@ -4,13 +4,9 @@ import { useChat } from 'ai/react';
 
 import ChatForm from "./ChatForm";
 import ChatBubble from "./ChatBubble";
-import { useEffect } from 'react';
 
-type Props = {
 
-}
-
-const ChatWindow = ({}: Props) => {
+const ChatWindow = () => {
   // const endpoint = "api/chat"
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     // api: endpoint,
@@ -23,10 +19,7 @@ const ChatWindow = ({}: Props) => {
     }
   
   });
-  useEffect(() => {
-    console.log(messages);
-    
-  }, [messages])
+
   return (
     <div className="h-full flex flex-col">
       <div className="bg-black h-[90%] p-4 overflow-y-auto">

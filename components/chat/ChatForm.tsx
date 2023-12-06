@@ -11,7 +11,8 @@ const ChatForm = ({handleSubmit, handleInputChange, inputVal}: Props) => {
 
   return (
     <form onSubmit={handleSubmit} className="flex justify-between m-auto">
-      <input 
+      <input
+      required
       className="input input-bordered bg-base-200 w-full" 
       name="messageTextArea"
       placeholder="Send a Message.."
