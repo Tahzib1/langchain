@@ -7,9 +7,8 @@ import ChatBubble from "./ChatBubble";
 
 
 const ChatWindow = () => {
-  // const endpoint = "api/chat"
+
   const { messages, input, handleInputChange, handleSubmit } = useChat({
-    // api: endpoint,
     onResponse(response) {
       console.log(response);
       
