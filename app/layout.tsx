@@ -29,7 +29,7 @@ export default function RootLayout({
       <body className={publicSans.className}>
         <div>
           <Navbar />
-          <main className="h-[calc(100vh-64px)]">
+          <main className="h-[calc(100svh-64px)]">
             {children}
           </main>
         </div>
