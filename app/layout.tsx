@@ -13,16 +13,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <title>LangChain + NextJS</title>
+        <title>Chat with your Database</title>
         <link rel="shortcut icon" href="/images/favicon.ico" />
         <meta
           name="description"
-          content="Chat app using our own data!"
+          content="Chat with your database using simple conversation"
         />
-        <meta property="og:title" content="LangChain + Next.js" />
+        <meta property="og:title" content="Chat with your database" />
         <meta
           property="og:description"
-          content="Chat app using our own data!"
+          content="Chat with your database using simple conversation"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0" />
       </head>
