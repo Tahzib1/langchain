@@ -1,10 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { OpenAI } from "langchain/llms/openai";
 import { PromptTemplate } from "langchain/prompts";
-import { StreamingTextResponse, Message as VercelChatMessage } from "ai";
-import { BytesOutputParser, StringOutputParser } from 'langchain/schema/output_parser';
-import { JsonOutputFunctionsParser } from "langchain/output_parsers";
-import { RunnableSequence } from "langchain/schema/runnable";
+import { Message as VercelChatMessage } from "ai";
 import { SqlDatabase } from "langchain/sql_db";
 import { SqlDatabaseChain } from "langchain/chains/sql_db";
 import { DataSource } from "typeorm";
@@ -27,6 +24,20 @@ Only use the following tables:
 
 Question: {input}`;
 
+const isProd = process.env.NODE_ENV === "production";
+
+const datasource = new DataSource({
+  type: 'mysql',
+  host: process.env.DATABASE_HOST,
+  port: 3306,
+  username: process.env.DATABASE_USERNAME,
+  password: process.env.DATABASE_PASSWORD,
+  database: process.env.DATABASE_NAME,
+  ssl: {
+    rejectUnauthorized: isProd,
+    ca: isProd ? process.env.PLANETSCALE_SSL_CERT_PATH : '',
+  },
+});
 
 export async function POST(req: NextRequest) {
   try {
@@ -36,13 +47,7 @@ export async function POST(req: NextRequest) {
     const currentMessageContent = messages[messages.length - 1].content;
 
     const prompt = PromptTemplate.fromTemplate(template);
-    const outputParser = new StringOutputParser();
-
-    const datasource = new DataSource({
-      type: "sqlite",
-      database: "data/chinook.db",
-    });
-
+    
     const db = await SqlDatabase.fromDataSourceParams({
       appDataSource: datasource,
     });
@@ -56,12 +61,9 @@ export async function POST(req: NextRequest) {
       // verbose: true
     });
 
-
     const res = await chain.invoke({
       query: currentMessageContent,
     });
-
-
 
     return NextResponse.json(res, { status: 200});
 
