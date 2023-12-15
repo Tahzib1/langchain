@@ -8,11 +8,10 @@ import ChatBubble from "./ChatBubble";
 
 const ChatWindow = () => {
 
-  const { messages, input, handleInputChange, handleSubmit, isLoading } = useChat({
-    initialMessages: [{id: '0', role: 'assistant', content: '{ "result": "Hi, how can i help you?", "sql": ""}'}],
+  const { messages, input, handleInputChange, handleSubmit, isLoading, append } = useChat({
+    initialMessages: [{id: '0', role: 'assistant', content: '{ "result": "Hi, I am an AI Assistant Trained to answer questions about a SQL database. How can I help?", "sql": ""}'}],
     onResponse(response) {
-      console.log(response);
-      
+      console.log(response);  
     },
     onError: (e) => {
       console.error(e);
@@ -20,13 +19,25 @@ const ChatWindow = () => {
   
   });
 
+  const handleSuggestedPromptsClick = (text: string) => {
+    append({content: text, role: 'user', id: '' + messages.length + 1});
+  }
+
   return (
     <div className="h-full flex flex-col bg-zinc-800">
       <div className="bg-black h-[90%] p-4 overflow-y-auto">
-          {messages.map(message => {
+          {messages.map((message, index) => {
             const isAi = message.role === "system" || message.role === "assistant";
             const jsonData = isAi && JSON.parse(message.content);
-            return <ChatBubble key={message.id} content={jsonData.result || message.content} sql={jsonData.sql || ''} role={message.role}/>
+
+            return <ChatBubble 
+              key={message.id} 
+              content={jsonData.result || message.content} 
+              sql={jsonData.sql || ''} role={message.role} 
+              isFirstMessage={index === 0} 
+              handleSuggestedPromptsClick={handleSuggestedPromptsClick}
+              isLoading={isLoading}
+            />
           })}
       </div>
 

@@ -14,7 +14,6 @@ const ChatForm = ({handleSubmit, handleInputChange, inputVal, isLoading}: Props)
     <form onSubmit={handleSubmit} className="flex justify-between m-auto">
       <input
       required
-      disabled={isLoading}
       className="input input-bordered bg-zinc-900 w-full focus-within:bg-zinc-950" 
       name="messageTextArea"
       placeholder="Send a Message.."
@@ -23,7 +22,10 @@ const ChatForm = ({handleSubmit, handleInputChange, inputVal, isLoading}: Props)
       >
 
       </input>
-      <button disabled={isLoading} type="submit" className="btn btn-success ml-4 md:px-12">Send</button>
+      <button disabled={isLoading} type="submit" className="btn btn-success ml-4 md:px-12">
+        {isLoading && <span className="loading loading-spinner"></span>}
+        Send
+      </button>
 
 
     </form>
