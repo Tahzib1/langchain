@@ -28,9 +28,9 @@ const ChatBubble = ({content, role, sql, isFirstMessage, handleSuggestedPromptsC
     }
     {isFirstMessage && 
     <div className="grid grid-cols-2 gap-2 mt-4">
-      <button className="btn btn-sm btn-outline text-secondary-content" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[0])} >{suggestedMessages[0]}</button>
-      <button className="btn btn-sm btn-outline text-secondary-content" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[1])} >{suggestedMessages[1]}</button>
-      <button className="btn btn-sm btn-outline text-secondary-content" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[2])} >{suggestedMessages[2]}</button>
+      <button className="btn btn-sm btn-outline text-secondary-content hover:bg-white" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[0])} >{suggestedMessages[0]}</button>
+      <button className="btn btn-sm btn-outline text-secondary-content hover:bg-white" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[1])} >{suggestedMessages[1]}</button>
+      <button className="btn btn-sm btn-outline text-secondary-content hover:bg-white" disabled={isLoading} onClick={() => handleSuggestedPromptsClick(suggestedMessages[2])} >{suggestedMessages[2]}</button>
     </div>
     }
     </div>
